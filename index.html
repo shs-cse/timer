@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Timer</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta property="og:title" content="Timer"/>
+		<meta property="og:description" content="Simple onscreen timer"/> 
+		<meta property="og:type" content="website"/>
+		<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet"> 
+		<style type="text/css">
+		html, body {
+			height: 100vh;
+			overflow: hidden;
+		}
+
+		/* Theme */
+		body {
+			background-color: black;
+		}
+
+		#timer {
+			color: white;
+		    font-family: 'Fira Code', monospace;
+		}
+
+		#timer.ended {
+			color: red;
+			animation: blinker 1s linear infinite;
+		}
+
+		@keyframes blinker {
+			50% {
+				opacity: 0;
+			}
+		}
+		</style>
+	</head>
+	<body>
+		<div class="grid grid-cols-1 grid-rows-1 justify-items-center items-center h-full">
+			<div id="timer" class="text-9xl">00:00:00</div>
+		</div>
+
+		<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
+			const timer = document.getElementById('timer');
+
+			let value = null;
+			let end = null;
+
+			if (window.location.hash) {
+				value = window.location.hash.substr(1);
+			} else {
+				value = '00:01:00';
+			}
+
+			timer.innerHTML = format(value);
+
+			// autostart timer
+			if (window.obsstudio) {
+				window.addEventListener('obsSourceVisibleChanged', function(event) {
+					if (event.detail) {
+						startTimer();
+					} else {
+						clearTimer();
+					}
+				});
+			}
+
+			document.onkeypress = function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				// Cancel timer
+				if (e.charCode === 113) { // q
+					stopTimer();
+				}
+
+				// Clear timer
+				if (e.charCode === 99) {
+					clearTimer();
+				}
+
+				// Start timer
+				if (e.charCode === 13) { // enter
+					startTimer();
+				}
+
+				// Set timer
+				if (e.charCode >= 48 && e.charCode <= 57) { // numbers
+					value = format(value + String.fromCharCode(e.charCode));
+					timer.innerHTML = value;
+					timer.classList.remove('ended');
+
+					window.location.hash = '#' + value;
+				}
+			}
+
+			function startTimer() {
+				const time = parse(value);
+				end = (new Date().getTime() / 1000) + time.hours * 60 * 60 + time.minutes * 60 + time.seconds;
+				timer.classList.remove('ended');
+				window.requestAnimationFrame(showTime);
+			}
+
+			function stopTimer() {
+				const urlParams = new URLSearchParams(window.location.search);
+				let value = window.location.hash.substr(1);
+				end = null;
+
+				timer.classList.remove('ended');
+
+				timer.innerHTML = format(value);
+			}
+
+			function clearTimer() {
+				value = format("");
+				timer.innerHTML = value;
+				timer.classList.remove('ended');
+
+				window.location.hash = '#' + value;
+			}
+		
+			function showTime() {
+				if (!end) {
+					return;
+				}
+
+				const remaining = end - (new Date().getTime() / 1000);
+
+				let s = 0, m = 0, h = 0;
+
+				s = Math.ceil(remaining);
+				
+				m = Math.floor(s / 60);
+				s = s % 60;
+
+				h = Math.floor(m / 60);
+				m = m % 60;
+
+				s = s.toString().padStart(2, '0');
+				m = m.toString().padStart(2, '0');
+				h = h.toString().padStart(2, '0');
+
+				timer.innerHTML = format([h, m, s].join(':'));
+				if (end && remaining >= 0) {
+					requestAnimationFrame(showTime);
+				} else {
+					timer.classList.add('ended');
+				}
+			}
+
+			function parse(str) {
+				const a = str.split(':');
+				return {
+					hours: parseInt(a[0]),
+					minutes: parseInt(a[1]),
+					seconds: parseInt(a[2]),
+				}
+			}
+
+			function format(str) {
+				return str.replace(/:/g, '').padStart(6, '0').slice(-6).replace(/(.{2})/g,"$1:").slice(0, -1);
+			}
+		});
+		</script>
+	</body>
+</html>
