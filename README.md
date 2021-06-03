@@ -14,5 +14,23 @@ Single-page application which shows a countdown timer.
 	+ After 27.0.0 full controll via Interact feature
 	+ Before 27.0.0 Need preseted timer and is autostarted via source visibility
 
+# Customization
+The style can be costumized in OBS Studio
+
+```
+body {
+	background-color: transparent;
+}
+
+#timer {
+	color: blue;
+}
+
+#timer.ended {
+	color: yellow;
+	animation: none;
+}
+```
+
 # Example
 ![Example page](https://github.com/terenc3/timer/raw/master/example.png?raw=true)
