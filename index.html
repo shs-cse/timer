@@ -51,7 +51,7 @@
 		}
 		</style>
 	</head>
-	<body class="help sound">
+	<body class="sound">
 		<div class="grid grid-cols-1 grid-rows-1 justify-items-center items-center h-full">
 			<div id="timer" class="text-9xl">00:00:00</div>
 			<div id="help" class="absolute bottom-5 p-3 border rounded">
@@ -80,6 +80,8 @@
 				value = window.location.hash.substr(1);
 			} else {
 				value = '00:01:00';
+
+				document.body.classList.add('help');
 			}
 
 			timer.innerHTML = format(value);
