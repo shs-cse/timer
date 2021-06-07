@@ -50,7 +50,7 @@
 		}
 		</style>
 	</head>
-	<body class="help">
+	<body class="help sound">
 		<div class="grid grid-cols-1 grid-rows-1 justify-items-center items-center h-full">
 			<div id="timer" class="text-9xl">00:00:00</div>
 			<div id="help" class="absolute bottom-5 p-3 border rounded">
@@ -65,6 +65,8 @@
 
 		<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
+			const title = document.title;
+
 			const timer = document.getElementById('timer');
 			const help = document.getElementById('help');
 
@@ -80,6 +82,7 @@
 			}
 
 			timer.innerHTML = format(value);
+			updateTitle();
 
 			// autostart timer
 			if (window.obsstudio) {
@@ -125,6 +128,7 @@
 					} else {
 						document.body.classList.add('sound');
 					}
+					updateTitle();
 				}
 
 				// Set timer
@@ -134,6 +138,8 @@
 					timer.classList.remove('ended');
 
 					window.location.hash = '#' + value;
+
+					updateTitle();
 				}
 			}
 
@@ -152,6 +158,8 @@
 				timer.classList.remove('ended');
 
 				timer.innerHTML = format(value);
+
+				updateTitle();
 			}
 
 			function endTimer() {
@@ -168,6 +176,8 @@
 				timer.classList.remove('ended');
 
 				window.location.hash = '#' + value;
+
+				updateTitle();
 			}
 		
 			function showTime() {
@@ -192,6 +202,9 @@
 				h = h.toString().padStart(2, '0');
 
 				timer.innerHTML = format([h, m, s].join(':'));
+
+				updateTitle()
+
 				if (end && remaining >= 0) {
 					requestAnimationFrame(showTime);
 				} else {
@@ -218,6 +231,14 @@
 					document.body.classList.remove('help');
 				} else {
 					document.body.classList.add('help');
+				}
+			}
+
+			function updateTitle() {
+				if (document.body.classList.contains('sound')) {
+					document.title = timer.innerHTML + ' ⏰ | ' + title;
+				} else {
+					document.title = timer.innerHTML + ' | ' + title;
 				}
 			}
 		});
