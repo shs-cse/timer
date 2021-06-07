@@ -59,6 +59,7 @@
 				<p>Start timer with <b>enter</b></p>
 				<p>Stop timer with <b>q</b></p>
 				<p>Toggle help with <b>h</b></p>
+				<p>Toggle sound with <b>s</b></p>
 			</div>
 		</div>
 
@@ -118,6 +119,14 @@
 					toggleHelp();
 				}
 
+				if (e.key === 's') {
+					if (document.body.classList.contains('sound')) {
+						document.body.classList.remove('sound');
+					} else {
+						document.body.classList.add('sound');
+					}
+				}
+
 				// Set timer
 				if (e.charCode >= 48 && e.charCode <= 57) { // numbers
 					value = format(value + String.fromCharCode(e.charCode));
@@ -148,7 +157,9 @@
 			function endTimer() {
 				timer.classList.add('ended');
 
-				audio.play();
+				if (document.body.classList.contains('sound')) {
+					audio.play();
+				}
 			}
 
 			function clearTimer() {
