@@ -50,6 +50,8 @@
 		document.addEventListener('DOMContentLoaded', function() {
 			const timer = document.getElementById('timer');
 
+			const audio = new Audio('bicycle-horn-1.wav');
+
 			let value = null;
 			let end = null;
 
@@ -118,6 +120,12 @@
 				timer.innerHTML = format(value);
 			}
 
+			function endTimer() {
+				timer.classList.add('ended');
+
+				audio.play();
+			}
+
 			function clearTimer() {
 				value = format("");
 				timer.innerHTML = value;
@@ -151,7 +159,7 @@
 				if (end && remaining >= 0) {
 					requestAnimationFrame(showTime);
 				} else {
-					timer.classList.add('ended');
+					endTimer();
 				}
 			}
 
