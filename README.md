@@ -34,3 +34,6 @@ body {
 
 # Example
 ![Example page](https://github.com/terenc3/timer/raw/master/example.png?raw=true)
+
+# Sources
++ Icon: https://openclipart.org/detail/204661/alarm-clock
