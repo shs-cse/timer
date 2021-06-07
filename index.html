@@ -17,6 +17,16 @@
 		html, body {
 			height: 100vh;
 			overflow: hidden;
+
+			color: white;
+		}
+
+		body #help {
+			opacity: 0;
+		    transition: opacity 0.25s linear;
+		}
+		body.help #help {
+			opacity: 1;
 		}
 
 		/* Theme */
@@ -25,7 +35,6 @@
 		}
 
 		#timer {
-			color: white;
 		    font-family: 'Fira Code', monospace;
 		}
 
@@ -41,14 +50,22 @@
 		}
 		</style>
 	</head>
-	<body>
+	<body class="help">
 		<div class="grid grid-cols-1 grid-rows-1 justify-items-center items-center h-full">
 			<div id="timer" class="text-9xl">00:00:00</div>
+			<div id="help" class="absolute bottom-5 p-3 border rounded">
+				<p>Enter desired time with <b>0-9</b> e.g 130 for 1 minutes and 30 seconds.<p>
+				<p>Clear time with <b>c</b></p>
+				<p>Start timer with <b>enter</b></p>
+				<p>Stop timer with <b>q</b></p>
+				<p>Toggle help with <b>h</b></p>
+			</div>
 		</div>
 
 		<script type="text/javascript">
 		document.addEventListener('DOMContentLoaded', function() {
 			const timer = document.getElementById('timer');
+			const help = document.getElementById('help');
 
 			const audio = new Audio('bicycle-horn-1.wav');
 
@@ -74,6 +91,10 @@
 				});
 			}
 
+			let autohide = setTimeout(function() {
+				document.body.classList.remove('help');
+			}, 5000);
+
 			document.onkeypress = function (e) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -91,6 +112,10 @@
 				// Start timer
 				if (e.charCode === 13) { // enter
 					startTimer();
+				}
+
+				if (e.key === 'h') {
+					toggleHelp();
 				}
 
 				// Set timer
@@ -174,6 +199,15 @@
 
 			function format(str) {
 				return str.replace(/:/g, '').padStart(6, '0').slice(-6).replace(/(.{2})/g,"$1:").slice(0, -1);
+			}
+
+			function toggleHelp() {
+				clearTimeout(autohide);
+				if (document.body.classList.contains('help')) {
+					document.body.classList.remove('help');
+				} else {
+					document.body.classList.add('help');
+				}
 			}
 		});
 		</script>
