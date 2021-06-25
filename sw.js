@@ -2,7 +2,6 @@ self.addEventListener('install', function(event) {
     var CACHE_NAME = 'timer-cache-v1';
     var urlsToCache = [
         './',
-        './example.png',
         './favicon.ico',
         './index.html',
         './assets/site.webmanifest',
@@ -51,18 +50,4 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
     event.respondWith(caches.match(event.request));
-});
-
-self.addEventListener('push', function(event) {
-    console.log('[Service Worker] Push Received.');
-    console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-
-    const title = 'Push Codelab';
-    const options = {
-        body: 'Yay it works.',
-        icon: 'images/icon.png',
-        badge: 'images/badge.png'
-    };
-
-    //event.waitUntil(self.registration.showNotification(title, options));
 });
