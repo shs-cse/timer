@@ -11,22 +11,23 @@
         {
             "purpose": "any maskable",
             "sizes": "192x192",
-            "src": "/assets/images/android-chrome-192x192.png",
+            "src": "images/android-chrome-192x192.png",
             "type": "image/png"
         },
         {
             "sizes": "512x512",
-            "src": "/assets/images/android-chrome-512x512.png",
+            "src": "images/android-chrome-512x512.png",
             "type": "image/png"
         }
     ],
+    "lang": "en-US",
     "name": "Timer",
     "orientation": "any",
     "screenshots":
     [
         {
             "sizes": "2560x1140",
-            "src": "example.png",
+            "src": "../example.png",
             "type": "image/png"
         }
     ],
@@ -35,11 +36,11 @@
     [
         {
             "name": "Egg timer",
-            "url": "/#00:07:00"
+            "url": "./#00:07:00"
         },
         {
             "name": "Pomodoro",
-            "url": "/#00:25:00"
+            "url": "./#00:25:00"
         }
     ],
     "start_url": "./",
