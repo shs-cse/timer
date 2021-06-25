@@ -1,0 +1,19 @@
+{
+  "name": "@terenc3/timer",
+  "version": "1.0.0",
+  "author": "Benjamin Kahlau",
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "postcss": "postcss assets/styles/timer.css --output assets/styles/timer.min.css",
+    "uglifyjs": "uglifyjs --compress --mangle --source-map --output assets/scripts/timer.min.js -- assets/scripts/*.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.2.5",
+    "cssnano": "^5.0.6",
+    "postcss": "^8.2.7",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.0",
+    "tailwindcss": "^2.0.3",
+    "uglify-js": "^3.13.9"
+  }
+}

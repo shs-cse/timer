@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* fira-code-regular - latin */
+@font-face {
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/fira-code-v10-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local(''),
+    url('../fonts/fira-code-v10-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../fonts/fira-code-v10-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/fira-code-v10-latin-regular.woff') format('woff'), /* Modern Browsers */
+    url('../fonts/fira-code-v10-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+    url('../fonts/fira-code-v10-latin-regular.svg#FiraCode') format('svg'); /* Legacy iOS */
+}
+
+
+html, body {
+    height: 100vh;
+    overflow: hidden;
+
+    color: white;
+}
+
+body #help {
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+body.help #help {
+    opacity: 1;
+}
+
+/* Theme */
+body {
+    background-color: black;
+}
+
+#timer {
+    font-family: 'Fira Code', monospace;
+    user-select: none;
+}
+
+#timer.ended {
+    color: red;
+    animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+    50% {
+        opacity: 0;
+    }
+}
