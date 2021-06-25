@@ -5,7 +5,7 @@
   "license": "GPL-3.0-only",
   "scripts": {
     "postcss": "postcss assets/styles/timer.css --output assets/styles/timer.min.css",
-    "uglifyjs": "uglifyjs --compress --mangle --source-map --output assets/scripts/timer.min.js -- assets/scripts/*.js"
+    "uglifyjs": "uglifyjs --compress --mangle --source-map \"root='../../', url='timer.min.js.map'\" --output assets/scripts/timer.min.js -- assets/scripts/timer.js"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.5",
