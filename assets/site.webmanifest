@@ -1,22 +1,23 @@
 {
-    "background_color": "#ffffff",
+    "background_color": "#00aba9",
     "categories":
     [
         "productivity",
         "utilities"
     ],
+    "description": "Single-page application which shows a countdown timer.",
     "display": "fullscreen",
     "icons":
     [
         {
             "purpose": "any maskable",
             "sizes": "192x192",
-            "src": "images/android-chrome-192x192.png",
+            "src": "images/logo-192x192.png",
             "type": "image/png"
         },
         {
             "sizes": "512x512",
-            "src": "images/android-chrome-512x512.png",
+            "src": "images/logo-512x512.png",
             "type": "image/png"
         }
     ],
@@ -26,7 +27,7 @@
     "screenshots":
     [
         {
-            "sizes": "2560x1140",
+            "sizes": "2560x1440",
             "src": "../example.png",
             "type": "image/png"
         }
@@ -36,13 +37,29 @@
     [
         {
             "name": "Egg timer",
-            "url": "../#00:07:00"
+            "url": "../#00:07:00",
+            "icons":
+            [
+                {
+                    "sizes": "96x96",
+                    "src": "images/favicon-96x96.png",
+                    "type": "image/png"
+                }
+            ]
         },
         {
             "name": "Pomodoro",
-            "url": "../#00:25:00"
+            "url": "../#00:25:00",
+            "icons":
+            [
+                {
+                    "sizes": "96x96",
+                    "src": "images/favicon-96x96.png",
+                    "type": "image/png"
+                }
+            ]
         }
     ],
     "start_url": "../",
-    "theme_color": "#ffffff"
+    "theme_color": "#00aba9"
 }
