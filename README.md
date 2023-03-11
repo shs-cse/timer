@@ -9,7 +9,7 @@ Single-page application which shows a countdown timer.
 
 ## Features
 + Plain and simple
-+ Preset timer via URL https://shs-cse.github.io/timer/#00:00:15 (15 minutes)
++ Preset timer via URL https://shs-cse.github.io/timer/#00:15:00 (15 minutes)
 + Integratable in OBS Studio
 	+ After 27.0.0 full controll via Interact feature
 	+ Before 27.0.0 Need preseted timer and is autostarted via source visibility
