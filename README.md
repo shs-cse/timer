@@ -33,7 +33,7 @@ body {
 ```
 
 # Example
-![Example page](https://github.com/shs-cse/timer/raw/master/example.png?raw=true)
+![Example page](example.png?raw=true)
 
 # Sources
 + Icon: https://openclipart.org/detail/204661/alarm-clock
